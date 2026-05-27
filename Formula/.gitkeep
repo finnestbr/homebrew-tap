@@ -1,0 +1,3 @@
+# Placeholder so the Formula/ directory exists before the first publish.
+# The finnestbr/finnest-power publish.yml workflow opens a PR to land
+# Formula/finnest.rb on each cli-v* tag.
