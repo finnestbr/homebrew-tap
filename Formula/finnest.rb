@@ -1,46 +1,46 @@
 class Finnest < Formula
   desc "Finnest Customer CLI"
   homepage "https://finnest.com.br"
-  version "0.6.26"
+  version "0.6.40"
   license "UNLICENSED"
 
   on_macos do
     on_arm do
-      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-darwin-arm64"
-      sha256 "28cba43420de76911f4511410c9fef84088fbc8b40e1e354ec41be98525bda84"
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.40/finnest-darwin-arm64"
+      sha256 "0aa3c36c8f94337cef6e3326828212c74ea6a2ad06249c511d3e6e4fadeaaf09"
       resource "finnest-runtime" do
-        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-runtime-darwin-arm64.tar.gz"
-        sha256 "f7d0a28a2c9d4aaf071ad569620c6e99c2c926a260ff463d682e8726eb0dc7ac"
+        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.40/finnest-runtime-darwin-arm64.tar.gz"
+        sha256 "f89f82225d1b322dfc30e56d3d1bb47046f40fe75c006c8525a980df50ee2c51"
       end
     end
   end
   on_macos do
     on_intel do
-      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-darwin-x64"
-      sha256 "513162d980e7267344869622e3ad1a84d0d44f84e27f09ab9fd73771280ab118"
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.40/finnest-darwin-x64"
+      sha256 "94f5536b3a46458c25a37165f4d34b6c2718d43c2af1edf016b445e14f9f58c6"
       resource "finnest-runtime" do
-        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-runtime-darwin-x64.tar.gz"
-        sha256 "bf60c094c75445ece61602157ac899ed2b2aa912b5df94d65071698cabddc8d1"
+        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.40/finnest-runtime-darwin-x64.tar.gz"
+        sha256 "4e56da29f55a821f2bfa54143993bf8343aff7a0045bffb7cbdb449ae8a4b216"
       end
     end
   end
   on_linux do
     on_arm do
-      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-linux-arm64"
-      sha256 "6ec6a4a945ba8c00f09db78e2db319c209b4951a9e633d8f93517f9515fe10f4"
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.40/finnest-linux-arm64"
+      sha256 "02cd257bf2fdf2e0acff355ea675fb314590c2e2e43c42f36191bb8147d0f37e"
       resource "finnest-runtime" do
-        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-runtime-linux-arm64.tar.gz"
-        sha256 "16a7cac7aea21300db1e8e9ef1cec17df82788c0828ecb54fe251ec4527ba99d"
+        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.40/finnest-runtime-linux-arm64.tar.gz"
+        sha256 "6fb66f9a519a6d145f434d80d43727aa611cea00054c19df32d1ada024c229ca"
       end
     end
   end
   on_linux do
     on_intel do
-      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-linux-amd64"
-      sha256 "a1ad1f500b15b0fcf5640c4358ab815802710922bd0982e95526efd30afedfd7"
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.40/finnest-linux-amd64"
+      sha256 "9a9f058f288f661d003f2277812efba289cd0daec5f110fe5a82225c759593bc"
       resource "finnest-runtime" do
-        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-runtime-linux-amd64.tar.gz"
-        sha256 "71f180cbb5aaee698e40f249c427373d16696d719fa165c679b0f086cd17ae7d"
+        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.40/finnest-runtime-linux-amd64.tar.gz"
+        sha256 "1205b1e86d9ed7cbb0838361eb9d91e91dcbe423ee9b5c92774ceeae6113dbd5"
       end
     end
   end
