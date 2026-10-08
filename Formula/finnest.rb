@@ -1,60 +1,68 @@
 class Finnest < Formula
   desc "Finnest Customer CLI"
   homepage "https://finnest.com.br"
-  version "0.6.26"
+  version "0.16.5"
   license "UNLICENSED"
+
+  resource "finnest-runtime" do
+    on_macos do
+    on_arm do
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.16.5/finnest-runtime-darwin-arm64.tar.gz"
+      sha256 "5f2ea686eadaf07b1e47f148f1f7850c5f56177587370edddf98fa5b1ddf0035"
+    end
+    on_intel do
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.16.5/finnest-runtime-darwin-x64.tar.gz"
+      sha256 "f77406b75775dd4ce82f831d9bcdf62b2643e59608cbe2df25fd072fa9d074a7"
+    end
+    end
+    on_linux do
+    on_arm do
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.16.5/finnest-runtime-linux-arm64.tar.gz"
+      sha256 "1282ca620a27a6d8c08c511239550740f13a980d995ce14532c9c030c2c093d4"
+    end
+    on_intel do
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.16.5/finnest-runtime-linux-amd64.tar.gz"
+      sha256 "f1c277ce440c166f2c4f2d0399c87e907ca68a20752e8095104eddebeda83980"
+    end
+    end
+  end
 
   on_macos do
     on_arm do
-      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-darwin-arm64"
-      sha256 "28cba43420de76911f4511410c9fef84088fbc8b40e1e354ec41be98525bda84"
-      resource "finnest-runtime" do
-        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-runtime-darwin-arm64.tar.gz"
-        sha256 "f7d0a28a2c9d4aaf071ad569620c6e99c2c926a260ff463d682e8726eb0dc7ac"
-      end
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.16.5/finnest-darwin-arm64.gz"
+      sha256 "63bceeb27b1c747ae453782b72c6ccffedafe436fcf21a498011d215dde2ab94"
     end
-  end
-  on_macos do
     on_intel do
-      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-darwin-x64"
-      sha256 "513162d980e7267344869622e3ad1a84d0d44f84e27f09ab9fd73771280ab118"
-      resource "finnest-runtime" do
-        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-runtime-darwin-x64.tar.gz"
-        sha256 "bf60c094c75445ece61602157ac899ed2b2aa912b5df94d65071698cabddc8d1"
-      end
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.16.5/finnest-darwin-x64.gz"
+      sha256 "74376a9b24b03b10664dcf19533be2807a14b5d4d1f4af3c8d9fa75c4d95ab37"
     end
   end
+
   on_linux do
     on_arm do
-      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-linux-arm64"
-      sha256 "6ec6a4a945ba8c00f09db78e2db319c209b4951a9e633d8f93517f9515fe10f4"
-      resource "finnest-runtime" do
-        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-runtime-linux-arm64.tar.gz"
-        sha256 "16a7cac7aea21300db1e8e9ef1cec17df82788c0828ecb54fe251ec4527ba99d"
-      end
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.16.5/finnest-linux-arm64.gz"
+      sha256 "174f72d32c623492752b40f5eefa94e150ff877738d8e06d3708073e71ef4bf2"
     end
-  end
-  on_linux do
     on_intel do
-      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-linux-amd64"
-      sha256 "a1ad1f500b15b0fcf5640c4358ab815802710922bd0982e95526efd30afedfd7"
-      resource "finnest-runtime" do
-        url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.6.26/finnest-runtime-linux-amd64.tar.gz"
-        sha256 "71f180cbb5aaee698e40f249c427373d16696d719fa165c679b0f086cd17ae7d"
-      end
+      url "https://github.com/finnestbr/finnest-static/releases/download/cli-v0.16.5/finnest-linux-amd64.gz"
+      sha256 "160a39137db4c8dc357bd4f1f038fe00d71fdd09f897c312d5bc5e61712e8935"
     end
   end
 
   def install
     asset = Dir["finnest-*"].first
     chmod 0755, asset
-    bin.install asset => "finnest"
+    libexec.install asset => "finnest"
     resource("finnest-runtime").stage do
-      prefix.install "finnest-runtime"
+      (libexec/"finnest-runtime").install Dir["*"]
+      (libexec/"finnest-runtime").install ".finnest-toolchain-identity"
     end
+    bin.install_symlink libexec/"finnest"
   end
 
   test do
-    assert_match "Usage: finnest", shell_output("#{bin}/finnest 2>&1", 0)
+    output = shell_output("#{bin}/finnest version --json")
+    assert_match(/"version":\s*"#{Regexp.escape(version.to_s)}"/, output)
+    assert_match(/"runtimeBundle":\s*\{\s*"status":\s*"ok"/, output)
   end
 end
