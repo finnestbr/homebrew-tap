@@ -54,6 +54,7 @@ SBOM + SLSA v1 provenance attestation.
 
 ## License
 
-This tap repository is MIT-licensed (see [`LICENSE`](./LICENSE)). The Finnest
-CLI binaries it points at are governed by the license declared in the upstream
+This tap repository is proprietary software of FINNEST LTDA, all rights
+reserved (see [`LICENSE`](./LICENSE)). The Finnest CLI binaries it points at
+are governed by the license declared in the upstream
 [finnest-power](https://github.com/finnestbr/finnest-power) repository.
